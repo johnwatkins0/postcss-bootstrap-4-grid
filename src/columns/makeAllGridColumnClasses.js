@@ -8,7 +8,8 @@ import { getInfix } from '../utils/getInfix';
  * @return {string} The string of classes.
  */
 export const makeAllGridColumnClasses = ({ gridColumns, gridBreakpoints }) =>
-    Object.keys(gridBreakpoints)
+    ['']
+        .concat(Object.keys(gridBreakpoints))
         .map(breakpoint => {
             const infix = getInfix(breakpoint);
 
