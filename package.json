@@ -6,6 +6,10 @@
   "author": "John Watkins",
   "license": "MIT",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnwatkins0/postcss-bootstrap-4-grid"
+  },
   "scripts": {
     "develop": "babel --watch src --out-dir dist",
     "build": "babel src --out-dir dist",
