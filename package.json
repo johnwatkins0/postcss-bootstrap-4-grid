@@ -1,6 +1,6 @@
 {
   "name": "postcss-bootstrap-4-grid",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates Bootstrap 4-style grid classes with PostCSS.",
   "main": "dist/index.js",
   "author": "John Watkins",
