@@ -1,4 +1,4 @@
-import { arrayFromRange } from '../utils/arrayFromRange';
+import { numbersInRange } from '../utils/numbersInRange';
 import { getInfix } from '../utils/getInfix';
 
 /**
@@ -15,7 +15,7 @@ export const makeAllGridColumnClasses = ({ gridColumns, gridBreakpoints }) =>
 
             return (
                 `.col${infix}, .col${infix}-auto, ` +
-                arrayFromRange(gridColumns)
+                numbersInRange(1, gridColumns)
                     .map(i => `.col${infix}-${i}`)
                     .join(', ')
             );

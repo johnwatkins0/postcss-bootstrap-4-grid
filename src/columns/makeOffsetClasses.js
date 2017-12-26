@@ -1,5 +1,5 @@
 import { makeColOffset } from './makeColOffset';
-import { arrayFromRange } from '../utils/arrayFromRange';
+import { numbersInRange } from '../utils/numbersInRange';
 
 /**
  * Makes the offset classes for a given breakpoint.
@@ -10,7 +10,7 @@ import { arrayFromRange } from '../utils/arrayFromRange';
  */
 export const makeOffsetClasses = ({ infix, gridColumns, doOffsetClasses }) =>
     doOffsetClasses
-        ? arrayFromRange(gridColumns - 1)
+        ? numbersInRange(1, gridColumns - 1)
               .map(
                   i => `.offset${infix}-${i} {
   ${makeColOffset({ gridColumns, size: i })}

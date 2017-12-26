@@ -1,5 +1,5 @@
 import { makeCol } from './makeCol';
-import { arrayFromRange } from '../utils/arrayFromRange';
+import { numbersInRange } from '../utils/numbersInRange';
 
 /**
  * Make the column classes for a given breakpoint.
@@ -8,7 +8,7 @@ import { arrayFromRange } from '../utils/arrayFromRange';
  * @return {string} The generated CSS.
  */
 export const makeColClasses = ({ infix, gridColumns }) =>
-    arrayFromRange(gridColumns)
+    numbersInRange(1, gridColumns)
         .map(
             i =>
                 `.col${infix}-${i} {

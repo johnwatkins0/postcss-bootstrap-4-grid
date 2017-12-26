@@ -1,4 +1,4 @@
-import { arrayFromRange } from '../utils/arrayFromRange';
+import { numbersInRange } from '../utils/numbersInRange';
 
 /**
  * Makes the order classes for a given breakpoint.
@@ -14,7 +14,7 @@ export const makeOrderClasses = ({ infix, gridColumns, doOrderClasses }) =>
 }
 
 ` +
-          arrayFromRange(gridColumns)
+          numbersInRange(1, gridColumns)
               .map(
                   i => `.order${infix}-${i} {
   order: ${i};
