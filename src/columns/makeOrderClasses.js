@@ -9,18 +9,18 @@ import { arrayFromRange } from '../utils/arrayFromRange';
  */
 export const makeOrderClasses = ({ infix, gridColumns, doOrderClasses }) =>
     doOrderClasses
-        ? arrayFromRange(gridColumns).reduce(
-              (output, i) =>
-                  output +
-                  `.order${infix}-${i} {
+        ? `.order${infix}-first {
+  order: -1;
+}
+
+` +
+          arrayFromRange(gridColumns)
+              .map(
+                  i => `.order${infix}-${i} {
   order: ${i};
 }
 
 `,
-              `.order${infix}-first {
-  order: -1;
-}
-
-`,
-          )
+              )
+              .join('')
         : '';

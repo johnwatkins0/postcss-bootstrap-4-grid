@@ -8,13 +8,13 @@ import { arrayFromRange } from '../utils/arrayFromRange';
  * @return {string} The generated CSS.
  */
 export const makeColClasses = ({ infix, gridColumns }) =>
-    arrayFromRange(gridColumns).reduce(
-        (output, i) =>
-            output +
-            `.col${infix}-${i} {
+    arrayFromRange(gridColumns)
+        .map(
+            i =>
+                `.col${infix}-${i} {
   ${makeCol({ gridColumns, size: i })}
 }
 
 `,
-        '',
-    );
+        )
+        .join('');

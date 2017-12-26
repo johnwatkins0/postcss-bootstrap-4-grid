@@ -8,13 +8,13 @@ export const makeContainerMaxWidths = ({
     containerMaxWidths,
     gridBreakpoints,
 }) =>
-    Object.keys(containerMaxWidths).reduce(
-        (output, key) =>
-            (output += `@media screen and (min-width: ${gridBreakpoints[key]}) {
+    Object.keys(containerMaxWidths)
+        .map(
+            key => `@media screen and (min-width: ${gridBreakpoints[key]}) {
   .container {
     max-width: ${containerMaxWidths[key]};
   }
 }
-`),
-        '',
-    );
+`,
+        )
+        .join('');

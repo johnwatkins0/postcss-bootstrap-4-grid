@@ -9,16 +9,14 @@ import { getInfix } from '../utils/getInfix';
  */
 export const makeAllGridColumnClasses = ({ gridColumns, gridBreakpoints }) =>
     Object.keys(gridBreakpoints)
-        .reduce((output, breakpoint) => {
+        .map(breakpoint => {
             const infix = getInfix(breakpoint);
 
             return (
-                output +
-                arrayFromRange(gridColumns).reduce(
-                    (classes, i) => `${classes}, .col${infix}-${i}`,
-                    `.col${infix}, .col${infix}-auto`,
-                ) +
-                ', '
+                `.col${infix}, .col${infix}-auto, ` +
+                arrayFromRange(gridColumns)
+                    .map(i => `.col${infix}-${i}`)
+                    .join(', ')
             );
-        }, '')
-        .slice(0, -2);
+        })
+        .join(', ');

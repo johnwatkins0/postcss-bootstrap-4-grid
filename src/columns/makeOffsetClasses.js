@@ -10,14 +10,13 @@ import { arrayFromRange } from '../utils/arrayFromRange';
  */
 export const makeOffsetClasses = ({ infix, gridColumns, doOffsetClasses }) =>
     doOffsetClasses
-        ? arrayFromRange(gridColumns - 1).reduce(
-              (output, i) =>
-                  output +
-                  `.offset${infix}-${i} {
+        ? arrayFromRange(gridColumns - 1)
+              .map(
+                  i => `.offset${infix}-${i} {
   ${makeColOffset({ gridColumns, size: i })}
 }
 
 `,
-              '',
-          )
+              )
+              .join('')
         : '';

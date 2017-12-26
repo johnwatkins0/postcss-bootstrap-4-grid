@@ -11,11 +11,7 @@ export const makeGridColumns = opts =>
     makeSharedColumnStyles(opts) +
     [''] // The empty breakpoint below the smallest.
         .concat(Object.keys(opts.gridBreakpoints))
-        .reduce(
-            (output, breakpoint) =>
-                output +
-                makeMediaBreakpointStyles(
-                    Object.assign({}, opts, { breakpoint }),
-                ),
-            '',
-        );
+        .map(breakpoint =>
+            makeMediaBreakpointStyles(Object.assign({}, opts, { breakpoint })),
+        )
+        .join('');
