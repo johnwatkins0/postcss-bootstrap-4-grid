@@ -9,44 +9,42 @@ import { makeNoGuttersUtil } from './makeNoGuttersUtil';
 import { makeGridColumns } from './columns';
 
 const makeGrid = (pluginOpts = {}) =>
-    new Promise((resolve, reject) => {
-        validateOpts(pluginOpts)
-            .then(opts => {
-                resolve(
-                    cssbeautify(
-                        `
+    new Promise(async (resolve, reject) => {
+        try {
+            const opts = await validateOpts(pluginOpts);
+            resolve(
+                cssbeautify(
+                    `
 
-      ${makeContainerClass(opts)}
-      ${makeContainerMaxWidths(opts)}
-      ${makeRowClass(opts)}
-      ${makeNoGuttersUtil()}
-      ${makeGridColumns(opts)}
+${makeContainerClass(opts)}
+${makeContainerMaxWidths(opts)}
+${makeRowClass(opts)}
+${makeNoGuttersUtil()}
+${makeGridColumns(opts)}
 
-            `,
-                        {
-                            indent: '  ',
-                            autosemicolon: true,
-                        },
-                    ),
-                );
-            })
-            .catch(error => {
-                reject(error);
-            });
+      `,
+                    {
+                        indent: '  ',
+                        autosemicolon: true,
+                    },
+                ),
+            );
+        } catch (error) {
+            reject(error);
+        }
     });
 
 const bootstrap4Grid = (opts = {}) => root =>
     new Promise((resolve, reject) => {
-        root.walkAtRules('bootstrap-4-grid', rule => {
-            makeGrid(opts)
-                .then(css => {
-                    rule.before(css);
-                    rule.remove();
-                    resolve();
-                })
-                .catch(error => {
-                    reject(error);
-                });
+        root.walkAtRules('bootstrap-4-grid', async rule => {
+            try {
+                const css = await makeGrid(opts);
+                rule.before(css);
+                rule.remove();
+                resolve();
+            } catch (error) {
+                reject(error);
+            }
         });
     });
 
