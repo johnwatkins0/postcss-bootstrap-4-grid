@@ -1,0 +1,42 @@
+{
+  "name": "postcss-bootstrap-4-grid",
+  "version": "1.0.0",
+  "description": "Generates Bootstrap 4-style grid classes with PostCSS.",
+  "main": "dist/index.js",
+  "author": "John Watkins",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "develop": "babel --watch src --out-dir dist",
+    "build": "babel src --out-dir dist",
+    "prepare": "BABEL_ENV=publish babel src --out-dir dist",
+    "pretest": "eslint *.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^8.1.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.14.0",
+    "eslint-config-postcss": "^2.0.2",
+    "jest": "^22.0.4"
+  },
+  "dependencies": {
+    "ajv": "^5.5.2",
+    "cssbeautify": "^0.3.1",
+    "postcss": "^6.0.14",
+    "reduce-css-calc": "^2.1.3"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": ["eslint-config-postcss"],
+    "globals": {
+      "test": true
+    },
+    "rules": {
+      "comma-dangle": 0
+    }
+  }
+}

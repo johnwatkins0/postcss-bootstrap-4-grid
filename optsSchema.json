@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "description": "Options passed to the postcss-bootstrap-4-grid plugin.",
+  "properties": {
+    "gridColumns": {
+      "description": "The number of column units to generate CSS for.",
+      "type": "number",
+      "minimum": 2,
+      "maximum": 48
+    },
+    "gridGutterWidth": {
+      "description":
+        "A CSS value (with a unit) representing the distance between columns.",
+      "type": "string",
+      "maxLength": 128
+    },
+    "containerMaxWidths": {
+      "description":
+        "The maximum widths of a container at a set of breakpoints.",
+      "type": "object"
+    },
+    "gridBreakpoints": {
+      "description":
+        "A set of breakpoints for generating different layouts at differing view widths.",
+      "type": "object"
+    },
+    "doOrderClasses": {
+      "description":
+        "Set to true to generate the classes that handle flexbox order.",
+      "type": "boolean"
+    },
+    "doOffsetClasses": {
+      "description":
+        "Set to true to generate the classes handling column offsets.",
+      "type": "boolean"
+    }
+  }
+}
