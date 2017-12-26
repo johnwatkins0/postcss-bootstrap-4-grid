@@ -41,12 +41,11 @@ const bootstrap4Grid = (opts = {}) => root =>
                 const css = await makeGrid(opts);
                 rule.before(css);
                 rule.remove();
+                resolve();
             } catch (error) {
                 reject(error);
-                return;
             }
         });
-        resolve();
     });
 
 module.exports = postcss.plugin('bootstrap-4-grid', bootstrap4Grid);
