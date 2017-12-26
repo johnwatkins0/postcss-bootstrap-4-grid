@@ -34,8 +34,14 @@ ${makeGridColumns(opts)}
         }
     });
 
-const bootstrap4Grid = (opts = {}) => root =>
+const bootstrap4Grid = (opts = {}) => (root, result) =>
     new Promise((resolve, reject) => {
+        if (root.source.input.css.indexOf('@bootstrap-4-grid') === -1) {
+            result.warn('@bootstrap-4-grid at rule not found');
+            resolve();
+            return;
+        }
+
         root.walkAtRules('bootstrap-4-grid', async rule => {
             try {
                 const css = await makeGrid(opts);
