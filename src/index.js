@@ -25,9 +25,9 @@ ${makeGridColumns(opts)}
       `,
                     {
                         indent: '  ',
-                        autosemicolon: true,
-                    },
-                ),
+                        autosemicolon: true
+                    }
+                )
             );
         } catch (error) {
             reject(error);
@@ -36,22 +36,33 @@ ${makeGridColumns(opts)}
 
 const bootstrap4Grid = (opts = {}) => (root, result) =>
     new Promise((resolve, reject) => {
-        if (root.source.input.css.indexOf('@bootstrap-4-grid') === -1) {
-            result.warn('@bootstrap-4-grid at rule not found');
+        const atRuleCount =
+            root.toString().split('@bootstrap-4-grid').length - 1;
+
+        if (atRuleCount === 0) {
             resolve();
             return;
         }
 
+        let steps = 0;
         root.walkAtRules('bootstrap-4-grid', async rule => {
             try {
                 const css = await makeGrid(opts);
                 rule.before(css);
                 rule.remove();
-                resolve();
+                steps += 1;
             } catch (error) {
-                reject(error);
+                steps += 1;
+                result.warn(err);
             }
         });
+
+        const completionInterval = setInterval(() => {
+            if (steps === atRuleCount) {
+                clearInterval(completionInterval);
+                resolve();
+            }
+        }, 1000);
     });
 
 module.exports = postcss.plugin('bootstrap-4-grid', bootstrap4Grid);
